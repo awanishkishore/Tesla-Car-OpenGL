@@ -1,4 +1,5 @@
 #include<GL/glut.h>
+#include<math.h>
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -8,6 +9,7 @@ void display()
 	glVertex2f(370.0, 300.0);
 	glEnd();
 	glFlush();
+
 
 	glColor3f(1.0, 0.8, 0);//square wall
 	glBegin(GL_POLYGON);
@@ -95,7 +97,6 @@ void display()
 	glEnd();
 	glFlush();
 
-		
 
 	glColor3f(1.0, 0.5, 0); //step2
 	glBegin(GL_POLYGON);
@@ -114,6 +115,25 @@ void display()
 	glEnd();
 	glFlush();
 
+	{								//tree
+	glColor3f(0.59, 0.16, 0.106);
+	glBegin(GL_POLYGON);
+	glVertex2f(445, 200);
+	glVertex2f(457, 200);
+	glVertex2f(457, 90);
+	glVertex2f(445, 90);
+	glEnd();
+	glColor3f(0, 1, 0.2);
+	glBegin(GL_POLYGON);	//Ellipse 01
+	for (int i = 0; i < 360; i++)
+	{
+		float rad = i * 3.14159 / 180.0;
+		glVertex2f(cos(rad) * 50 + 450,
+			sin(rad) * 70 + 250);
+	}
+	glEnd();
+	glFlush();
+	}
 	glLineWidth(2.0); //window outline
 	glColor3f(1.0, 0.5, 0);
 	glBegin(GL_LINE_LOOP);
