@@ -18,10 +18,19 @@
     <ClInclude Include="a01.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ak02.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="a01.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ak02.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

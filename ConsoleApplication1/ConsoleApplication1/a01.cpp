@@ -1,179 +1,55 @@
-#include<GL/glut.h>
-#include<math.h>
+#include<GL\glut.h>
+#include<stdio.h>
+
+float v[6][2] = {
+	/////////////////////// 1 3 5
+	{ -0.5, -0.5 }, // x x x
+	{ -0.5, 0.5 }, //
+	{ 0.0, -0.5 }, //
+	{ 0.0, 0.5 }, //
+	{ 0.5, -0.5 }, // x x x
+	{ 0.5, 0.5 } // 0 2 4
+};
+
+
 void display()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBegin(GL_POLYGON);
-	glVertex2f(250, 400);
-	glVertex2f(130.0, 300.0);
-	glVertex2f(370.0, 300.0);
-	glEnd();
-	glFlush();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glColor3f(0, 1, 1);
+	glColor3f(1, 0, 0);
 
-
-	glColor3f(1.0, 0.8, 0);//square wall
-	glBegin(GL_POLYGON);
-	glVertex2f(150.0, 300.0);
-	glVertex2f(350.0, 300.0);
-	glVertex2f(350.0, 120.0);
-	glVertex2f(150.0, 120.0);
-	glEnd();
-
-	glColor3f(0, 1, 0);//house foundation
-	glBegin(GL_POLYGON);
-	glVertex2f(140, 120);
-	glVertex2f(360.0, 120);
-	glVertex2f(360.0, 90);
-	glVertex2f(140, 90);
-	glEnd();
-
-	glColor3f(1.0, 0, 0); //door
-	glBegin(GL_POLYGON);
-	glVertex2f(220.0, 220.0);
-	glVertex2f(280.0, 220.0);
-	glVertex2f(280.0, 120.0);
-	glVertex2f(220.0, 120.0);
-	glEnd();
-
-	glColor3f(1.0, 0.5, 0);//door outline
-	glLineWidth(2.0);
 	glBegin(GL_LINE_LOOP);
-	glVertex2f(220.0, 220.0);
-	glVertex2f(280.0, 220.0);
-	glVertex2f(280.0, 120.0);
-	glVertex2f(220.0, 120.0);
-	glEnd();
+	glVertex2fv(v[0]);
+	glVertex2fv(v[1]);
+	glVertex2fv(v[3]);
+	glVertex2fv(v[2]);
 
-	glColor3f(1.0, 0.3, 0); //step1
-	glBegin(GL_POLYGON);
-	glVertex2f(215.0, 120.0);
-	glVertex2f(285.0, 120.0);
-	glVertex2f(285.0, 105.0);
-	glVertex2f(215.0, 105.0);
-	glEnd();
+	glColor3f(0, 1, 0);
 
-	glColor3f(0.0, 0.0, 0);  //ground
-	glBegin(GL_POLYGON);
-	glVertex2f(0,90);
-	glVertex2f(800,90);
-	glVertex2f(800, 0);
-	glVertex2f(0, 0);
+	glVertex2fv(v[2]);
+	glVertex2fv(v[3]);
+	glVertex2fv(v[5]);
+	glVertex2fv(v[4]);
+	
+
 	glEnd();
 	glFlush();
 
-	glColor3f(1, 1, 1); //white stripe 01
-	glBegin(GL_POLYGON);
-	glVertex2f(40, 50);
-	glVertex2f(140, 50);
-	glVertex2f(140, 35);
-	glVertex2f(40, 35);
-	glEnd();
-	glFlush();
-
-	glColor3f(1, 1, 1); //white stripe 02
-	glBegin(GL_POLYGON);
-	glVertex2f(240, 50);
-	glVertex2f(340, 50);
-	glVertex2f(340, 35);
-	glVertex2f(240, 35);
-	glEnd();
-	glFlush();
-
-	glColor3f(1, 1, 1); //white stripe 03
-	glBegin(GL_POLYGON);
-	glVertex2f(440, 50);
-	glVertex2f(540, 50);
-	glVertex2f(540, 35);
-	glVertex2f(440, 35);
-	glEnd();
-	glFlush();
-
-	glColor3f(1, 1, 1); //white stripe 04
-	glBegin(GL_POLYGON);
-	glVertex2f(640, 50);
-	glVertex2f(740, 50);
-	glVertex2f(740, 35);
-	glVertex2f(640, 35);
-	glEnd();
-	glFlush();
-
-
-	glColor3f(1.0, 0.5, 0); //step2
-	glBegin(GL_POLYGON);
-	glVertex2f(210.0, 105.0);
-	glVertex2f(290.0, 105.0);
-	glVertex2f(290.0, 88.0);
-	glVertex2f(210.0, 88.0);
-	glEnd();
-
-	glColor3f(0, 0.4, 1);
-	glBegin(GL_POLYGON);
-	glVertex2f(230.0, 350.0);
-	glVertex2f(270.0, 350.0);
-	glVertex2f(270.0, 310.0);
-	glVertex2f(230.0, 310.0);
-	glEnd();
-	glFlush();
-
-	{								//tree
-	glColor3f(0.59, 0.16, 0.106);
-	glBegin(GL_POLYGON);
-	glVertex2f(445, 200);
-	glVertex2f(457, 200);
-	glVertex2f(457, 90);
-	glVertex2f(445, 90);
-	glEnd();
-	glColor3f(0, 1, 0.2);
-	glBegin(GL_POLYGON);	//Ellipse 01
-	for (int i = 0; i < 360; i++)
-	{
-		float rad = i * 3.14159 / 180.0;
-		glVertex2f(cos(rad) * 50 + 450,
-			sin(rad) * 70 + 250);
-	}
-	glEnd();
-	glFlush();
-	}
-	glLineWidth(2.0); //window outline
-	glColor3f(1.0, 0.5, 0);
-	glBegin(GL_LINE_LOOP);
-	glVertex2f(230.0, 350.0);
-	glVertex2f(270.0, 350.0);
-	glVertex2f(270.0, 310.0);
-	glVertex2f(230.0, 310.0);
-	glEnd();
-	glFlush();
-
-	glLineWidth(2.0);
-	glColor3f(1.0, 0.5, 0);
-	glBegin(GL_LINES);
-	glVertex2f(250.0, 350.0);
-	glVertex2f(250.0, 310.0);
-	glEnd();
-	glFlush();
-
-	glLineWidth(2.0);
-	glColor3f(1.0, 0.5, 0);
-	glBegin(GL_LINES);
-	glVertex2f(270.0, 330.0);
-	glVertex2f(230.0, 330.0);
-	glEnd();
-	glFlush();
 }
 
 void init()
 {
-	glClearColor(0.204, 0.57, 0.86, 0.0);
-	glColor3f(1.0, 1.0, 1.0);
+	glClearColor(0,0,0, 0.0);
+	glColor3f(0, 0, 0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(0, 800, 0, 800);
+	gluOrtho2D(0, 500, 0, 500);
 }
 
 void main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB| GLUT_DEPTH);
 	glutInitWindowSize(500, 500);
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("simple");
