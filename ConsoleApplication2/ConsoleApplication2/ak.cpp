@@ -1,122 +1,93 @@
 #include<GL/glut.h>
+#include<math.h>
+
+float deg = 3.14 / 180;
+float r = 30;
+
 void display()
 {
-	
-	
-	glColor3f(1,0,0); //traingle roof
 	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(1, 1, 0);
+	glBegin(GL_POLYGON);			//Sun Fill
+	for (int i = 0; i < 360; i++)
+	{
+		glVertex2f((r-2)*cos(i*deg) + 60, (r-2)*sin(i*deg) + 420);
+	}
+	glEnd();
+
+	glColor3f(0, 0, 0);			//Road
 	glBegin(GL_POLYGON);
-	glVertex2f(250,400);
-	glVertex2f(130.0,300.0);
-	glVertex2f(370.0,300.0);
+	glVertex2f(0, 0);
+	glVertex2f(400, 300);
+	glVertex2f(160, 0);
 	glEnd();
-	glFlush();
-
-	glColor3f(1.0,0.8,0);//square wall
-	glBegin(GL_POLYGON);
-	glVertex2f(150.0,300.0);
-	glVertex2f(350.0,300.0);
-	glVertex2f(350.0,120.0);
-	glVertex2f(150.0,120.0);
-	glEnd();
-
-	glColor3f(0,1,0);//ground
-	glBegin(GL_POLYGON);
-	glVertex2f(140,120);
-	glVertex2f(360.0,120);
-	glVertex2f(360.0,90);
-	glVertex2f(140,90);
-	glEnd();
-
-	glColor3f(1.0,0,0); //door
-	glBegin(GL_POLYGON);
-	glVertex2f(220.0,220.0);
-	glVertex2f(280.0,220.0);
-	glVertex2f(280.0,120.0);
-	glVertex2f(220.0,120.0);
-	glEnd();
-
-	glColor3f(1.0,0.5,0);//door outline
-	glLineWidth(2.0);
-	glBegin(GL_LINE_LOOP);
-	glVertex2f(220.0,220.0);
-	glVertex2f(280.0,220.0);
-	glVertex2f(280.0,120.0);
-	glVertex2f(220.0,120.0);
-	glEnd();
-
-	glColor3f(1.0,0.3,0); //step1
-	glBegin(GL_POLYGON);
-	glVertex2f(215.0,120.0);
-	glVertex2f(285.0,120.0);
-	glVertex2f(285.0,105.0);
-	glVertex2f(215.0,105.0);
-	glEnd();
-
-	glColor3f(1.0,0.5,0); //step2
-	glBegin(GL_POLYGON);
-	glVertex2f(210.0,105.0);
-	glVertex2f(290.0,105.0);
-	glVertex2f(290.0,88.0);
-	glVertex2f(210.0,88.0);
-	glEnd();
-
-	glColor3f(0,0.4,1);
-	glBegin(GL_POLYGON);
-	glVertex2f(230.0,350.0);
-	glVertex2f(270.0,350.0);
-	glVertex2f(270.0,310.0);
-	glVertex2f(230.0,310.0);
-	glEnd();
-	glFlush();
-	
-	glLineWidth(2.0); //window outline
-	glColor3f(1.0,0.5,0);
-	glBegin(GL_LINE_LOOP);
-	glVertex2f(230.0,350.0);
-	glVertex2f(270.0,350.0);
-	glVertex2f(270.0,310.0);
-	glVertex2f(230.0,310.0);
-	glEnd();
-	glFlush();
-
-	glLineWidth(4.0); //bird
-	glColor3f(0,0,0);
-	glBegin(GL_LINES);
-	glVertex2f(400.0,450.0);
-	glVertex2f(380.0,430.0);
-	glLineWidth(4.0); 
-	glColor3f(0,0,0);
-	glBegin(GL_LINES);
-	glVertex2f(380.0,450.0);
-	glVertex2f(400.0,430.0);
-	
-	glEnd();
-	glFlush();
-	
-	glLineWidth(2.0);
-	glColor3f(1.0,0.5,0);
-	glBegin(GL_LINES);
-	glVertex2f(250.0,350.0);
-	glVertex2f(250.0,310.0);
-	glEnd();
-	glFlush();
 		
-	glLineWidth(2.0);
-	glColor3f(1.0,0.5,0);
-	glBegin(GL_LINES);
-	glVertex2f(270.0,330.0);
-	glVertex2f(230.0,330.0);
+	glBegin(GL_POLYGON);		//Solar Panel Fill
+	glVertex2f(330, 255);
+	glVertex2f(475, 250);
+	glVertex2f(425, 140);
+	glVertex2f(280, 175);
+	glEnd();
+
+	glColor3f(1, 1, 1);			//Solar Panel Outline
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(330, 255);
+	glVertex2f(475, 250);
+	glVertex2f(425, 140);
+	glVertex2f(280, 175);
+	glEnd();
+	
+	glBegin(GL_LINES);			//Solar Panel Outline 02
+	glVertex2f(400, 252.5);
+	glVertex2f(350, 157.5);
 	glEnd();
 	glFlush();
 
+	glLineWidth(6.0);			//Solar Panel Outline 03
+	glBegin(GL_LINES);			
+	glVertex2f(475, 250);
+	glVertex2f(425, 140);
+	glEnd();
+	glFlush();
 
-	glClearColor(0,0.8,1,0);
+	glLineWidth(1.0);
+	for (float j = 0; j < 15; j++)		//Sun Outline
+	{
+		for (int i = 0; i < 36; i++)
+		{
+			glColor3f(1, 1 - (j / 15)+0.4, 0);
+			glBegin(GL_POINTS);
+			for (int i = 0; i < 360; i++)
+			{
+				glVertex2f((r + j -16)*cos(i*deg) + 60, (r +j -16)*sin(i*deg) + 420);
+			}
+			glEnd();
+
+			glColor3f(1, (j / 15), 0);
+			glBegin(GL_LINES);
+			glVertex2f(r*cos(i*10*deg) + 60, r*sin(i*10*deg) + 420);		
+			glVertex2f((r+j)*cos(i*10*deg+((int)i%2)) + 60, (r+j)*sin(i*10*deg + ((int)i % 2)) + 420);
+			glEnd();
+
+			glColor3f(1, 1, 0);			//Rays
+			glBegin(GL_LINES);
+			glVertex2f(60, 420);
+			glVertex2f(360, 200);
+			glEnd();
+
+			for (int k = 0; k < 999; k++)
+				for (int l = 0; l< 99; l++)
+				{
+					glFlush();
+				}
+		}
+	}	
+	
 }
 
 void init()
 {
-	glClearColor(0.0,0.0,0.0,0.0);
+	glClearColor(0, 0.8, 1, 0);
 	glColor3f(1.0,1.0,1.0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -130,6 +101,7 @@ void main(int argc,char **argv)
 	glutInitWindowSize(500,500);
 	glutInitWindowPosition(0,0);
 	glutCreateWindow("simple");
+	glEnable(GL_LINE_SMOOTH);
 	glutDisplayFunc(display);
 	init();
 	glutMainLoop();
